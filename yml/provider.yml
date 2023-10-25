@@ -1,0 +1,16 @@
+name: aws
+role: arn:aws:iam::${aws:accountId}:role/lambda-role
+region: ${opt:region, self:custom.region}
+runtime: nodejs18.x
+memorySize: 512
+timeout: 30
+stage: ${opt:stage, 'dev'}
+deploymentBucket: ${self:custom.deploymentBucket}
+logRetentionInDays: ${self:custom.logRetentionInDays}
+environment:
+  AWS_ACCOUNT_ID: ${aws:accountId}
+  ASM_CONFIG_KEY: ${self:custom.dopplerProjectName}/${self:provider.stage}/doppler
+  DOMAIN: https://${self:custom.domain}/${self:custom.basePath}
+  SERVICE_NAME: ${self:service}-${self:provider.stage}
+  STAGE: ${self:provider.stage}
+  BASE_PATH: ${self:custom.basePath}

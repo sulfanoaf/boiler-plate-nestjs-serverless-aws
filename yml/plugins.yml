@@ -1,0 +1,7 @@
+- serverless-offline
+- serverless-domain-manager
+- serverless-plugin-aws-alerts
+- serverless-plugin-canary-deployments
+- serverless-plugin-warmup
+- serverless-prune-plugin
+- serverless-layers

@@ -1,0 +1,23 @@
+# Stage Config
+appName: boiler-plate-dev
+## Provider Config
+environment: dev
+region: 'ap-southeast-1'
+deploymentBucket:
+logRetentionInDays: 14
+## Domain Config
+domain:
+certificate:
+basePath:
+userPool:
+adminPool:
+
+# Plugin Config
+pruneNumber: 1
+deployType: 'AllAtOnce'
+warmup:
+  enabled: false
+  events:
+    - schedule: cron(0/4 0-14,23 ? * MON-FRI *)
+  concurrency: 1
+  role: arn:aws:iam::${aws:accountId}:role/lambda-role

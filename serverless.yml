@@ -1,0 +1,9 @@
+org: daicode
+app: ${self:custom.appName}
+service: boiler-plate
+useDotenv: true
+custom: ${file(yml/custom/index.yml)}
+provider: ${file(yml/provider.yml)}
+plugins: ${file(yml/plugins.yml)}
+package: ${file(yml/package.yml)}
+functions: ${file(yml/functions/index.yml)}

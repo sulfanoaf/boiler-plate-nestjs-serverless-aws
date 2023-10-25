@@ -1,0 +1,20 @@
+warmup:
+  default:
+    prewarm: true
+    alias: 'Live'
+handler: dist/handler.handler
+alarms:
+  - functionErrors
+deploymentSettings:
+  type: ${self:custom.deploymentType}
+  alias: Live
+  alarms:
+    - MainFunctionErrorsAlarm
+events:
+  - http:
+      method: get
+      path: /hello-word
+      cors:
+        origin: "*"
+        headers: ${self:custom.httpConfig.default}
+        allowCredentials: true

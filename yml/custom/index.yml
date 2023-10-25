@@ -1,0 +1,62 @@
+# Serverless Config
+enterprise:
+  collectLambdaLogs: false
+stages:
+  dev: ${file(yml/custom/stages-dev.yml)}
+  prod: ${file(yml/custom/stages-prod.yml)}
+
+# Provider Config
+region: ${self:custom.stages.${self:provider.stage}.region, 'ap-southeast-1'}
+deploymentBucket: ${self:custom.stages.${self:provider.stage}.deploymentBucket, 'flashcoffee-deployment'}
+logRetentionInDays: ${self:custom.stages.${self:provider.stage}.logRetentionInDays}
+
+# Stage Config shortcut
+basePath: ${self:custom.stages.${self:provider.stage}.basePath, ''}
+environment: ${self:custom.stages.${self:provider.stage}.environment}
+domain: ${self:custom.stages.${self:provider.stage}.domain}
+userPool: ${self:custom.stages.${self:provider.stage}.userPool}
+adminPool: ${self:custom.stages.${self:provider.stage}.adminPool}
+
+# Custom Config
+appName: ${self:custom.stages.${self:provider.stage}.appName}
+userPoolName: FlashCoffee-${self:provider.stage}
+userPoolClientName: FlashCoffee-${self:provider.stage}-Client
+dopplerProjectName: post-centralize-point
+httpConfig: ${file(yml/custom/http-config.yml)}
+
+# Plugin Config
+# - serverless-domain-manager
+customDomain:
+  domainName: ${self:custom.domain}
+  basePath: ${self:custom.basePath}
+  stage: ${self:provider.stage}
+  certificateName: ${self:custom.stages.${self:provider.stage}.certificate}
+  createRoute53Record: true
+  endpointType: "regional"
+# - serverless-plugin-canary-deployments
+deploymentType: ${opt:deployType, self:custom.stages.${self:provider.stage}.deployType}
+# - serverless-plugin-aws-alerts
+alerts:
+  dashboards: true
+# - serverless-plugin-warmup
+warmup:
+  default: ${self:custom.stages.${self:provider.stage}.warmup}
+warmupPackage:
+  individually: true
+  patterns:
+    - '!../**'
+    - '!../../**'
+    - './serverless_sdk/**'
+    - './s_warmUpPluginDefault.js'
+# - serverless-prune-plugin
+prune:
+  automatic: true
+  number: ${self:custom.stages.${self:provider.stage}.pruneNumber}
+  includeLayers: true
+# - serverless-layers
+serverless-layers:
+  dependenciesPath: ./package.json
+  packageManager: yarn
+  compatibleRuntimes: ["nodejs18.x"]
+
+# Custom Config with Plugin

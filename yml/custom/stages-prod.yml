@@ -1,0 +1,23 @@
+# Stage Config
+appName: boiler-plate-prod
+## Provider Config
+environment: prod
+region:
+deploymentBucket:
+logRetentionInDays: 90
+## Domain Config
+domain:
+certificate:
+basePath:
+userPool:
+adminPool:
+
+# Plugin Config
+pruneNumber: 2
+deployType: 'Linear10PercentEvery1Minute'
+warmup:
+  enabled: true
+  events:
+    - schedule: cron(0/4 * * * ? *)
+  concurrency: 2
+  role: arn:aws:iam::${aws:accountId}:role/lambda-role

@@ -1,0 +1,22 @@
+dist
+dist/*
+**/dist/*
+**/.serverless/*
+
+# Macbook file
+.DS_Store
+
+# Environment file
+**/.env
+**/.env.*
+**/service-account-file-dev.json
+**/service-account-file-prod.json
+
+node_modules/
+.DS_Store
+
+coverage/
+junit.xml
+
+package-lock.json
+test-report.*
