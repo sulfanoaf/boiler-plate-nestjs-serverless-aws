@@ -1,4 +1,4 @@
-{
+const config = {
   "singleQuote": true,
   "printWidth": 80,
   "trailingComma": "all",
@@ -8,3 +8,6 @@
   "tabWidth": 2,
   "arrowParens": "avoid"
 }
+
+module.exports = config;
+

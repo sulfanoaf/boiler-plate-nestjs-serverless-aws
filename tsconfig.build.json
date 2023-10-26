@@ -6,6 +6,7 @@
     "test",
     "**/*spec.ts",
     "__mocks__/*.ts",
+    "__mocks__/**/*.ts",
     "jest.config.ts"
   ]
 }

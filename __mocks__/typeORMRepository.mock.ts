@@ -8,6 +8,7 @@ export class MockRepository {
     relations: [],
   };
 
+  public create = jest.fn();
   public save = jest.fn();
   public delete = jest.fn();
   public update = jest.fn();

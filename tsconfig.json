@@ -23,7 +23,13 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": ["src/*.ts", "src/**/*.ts", "jest.config.ts", "__mocks__/*.ts"],
+  "include": [
+    "src/*.ts",
+    "src/**/*.ts",
+    "jest.config.ts",
+    "__mocks__/*.ts",
+    "__mocks__/**/*.ts"
+  ],
   "exclude": [
     "./node_modules/*",
     "./node_modules/@types",

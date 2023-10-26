@@ -1,0 +1,28 @@
+style: gitlab
+template: CHANGELOG.tpl.md
+info:
+  title: CHANGELOG
+  # Fill repository_url with your git repo
+  repository_url:
+options:
+  tag_filter_pattern: '^release'
+  commits:
+    filters:
+      Type:
+        - feature
+        - bugfix
+        - refactor
+  commit_groups:
+    title_maps:
+      feature: Features
+      bugfix: Bug Fixes
+      refactor: Code Refactoring
+  header:
+    pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
+    pattern_maps:
+      - Type
+      - Scope
+      - Subject
+  notes:
+    keywords:
+      - BREAKING CHANGE
